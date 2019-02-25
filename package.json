@@ -8,6 +8,7 @@
     "express": "^4.16.4",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
+    "npm-run-all": "^4.1.5",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-redux": "^6.0.0",
@@ -17,8 +18,17 @@
     "socket.io": "^2.2.0"
   },
   "scripts": {
-    "start": "node src/server/server.js & (react-scripts build && serve -s build)"
+    "dev": "react-scripts start",
+    "start": "run-p start-react start-node",
+    "start-react": "serve -s build",
+    "start-node": "node src/server/server.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "my-all": "npm run build && npm run start",
+    "heroku-postbuild": "npm run build"
   },
+  "proxy": "https://localhost:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
