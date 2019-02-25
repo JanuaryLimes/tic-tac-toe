@@ -1,12 +1,11 @@
 import { store } from '../redux/store';
 import io from 'socket.io-client';
-const PORT = process.env.PORT || 5000;
-const socket = io('https://tic-tac-toe-oxo.herokuapp.com:' + PORT);
+//const PORT = process.env.PORT || 5000;
+const socket = io.connect(); // io('https://tic-tac-toe-oxo.herokuapp.com:' + PORT);
 
-var sockett = io.connect();
-console.log('check 1', sockett.connected);
-sockett.on('connect', function() {
-  console.log('check 2', sockett.connected);
+console.log('check 1', socket.connected);
+socket.on('connect', function() {
+  console.log('check 2', socket.connected);
 });
 
 socket.on('CELL_CLICK', msg => {
