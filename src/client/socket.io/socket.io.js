@@ -1,7 +1,16 @@
 import { store } from '../redux/store';
 import io from 'socket.io-client';
-//const PORT = process.env.PORT || 5000;
-const socket = io.connect(); // io('https://tic-tac-toe-oxo.herokuapp.com:' + PORT);
+
+let socket;
+
+if (process.env.NODE_ENV === 'production') {
+  console.log('production');
+  socket = io.connect();
+} else {
+  console.log('dev');
+  const PORT = process.env.PORT || 5000;
+  socket = io.connect('localhost:' + PORT);
+}
 
 console.log('check 1', socket.connected);
 socket.on('connect', function() {

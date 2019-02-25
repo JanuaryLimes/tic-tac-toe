@@ -18,7 +18,8 @@
     "socket.io": "^2.2.0"
   },
   "scripts": {
-    "dev": "react-scripts start",
+    "react-dev": "react-scripts start",
+    "server-dev": "nodemon --inspect=9230 src/server/server.js",
     "start": "run-p start-node",
     "start-react": "serve -s build",
     "start-node": "node src/server/server.js",
