@@ -1,6 +1,6 @@
 import { store } from '../redux/store';
 import io from 'socket.io-client';
-const socket = io('http://localhost:3002');
+const socket = io('https://tic-tac-toe-oxo.herokuapp.com:3002');
 
 socket.on('CELL_CLICK', msg => {
   store.dispatch({ type: 'CELL_CLICK', id: msg });
