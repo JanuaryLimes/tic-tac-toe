@@ -13,7 +13,7 @@ import ConnectionStatus from './ConnectionStatus';
 class Main extends Component {
   render() {
     const {
-      newGameClick,
+      //newGameClick,
       inputRoom,
       connectToRoom,
       inputRoomChange
@@ -51,9 +51,7 @@ class Main extends Component {
             Zmien pokój
           </Button>
         </div>
-        <div className="board-container">
-          <TicTacToe />
-        </div>
+        <TicTacToe />
         <div className="footer" />
       </div>
     );
