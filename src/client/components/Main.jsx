@@ -11,13 +11,27 @@ import ConnectionStatus from './ConnectionStatus';
 // https://cssgradient.io/
 
 class Main extends Component {
+  componentDidMount() {
+    this.props.connectToRoom();
+  }
+
+  handleKeyUp(e) {
+    if (e.keyCode === 13) {
+      this.props.connectToRoom();
+    }
+  }
+
   render() {
     const {
       //newGameClick,
       inputRoom,
       connectToRoom,
+      connectedRoom,
       inputRoomChange
     } = this.props;
+
+    const showChangeRoom = inputRoom !== connectedRoom;
+    console.log('showChangeRoom', showChangeRoom);
 
     return (
       <div className="main-div">
@@ -30,26 +44,35 @@ class Main extends Component {
             Nowa gra
           </Button> */}
 
-          <span style={{ paddingLeft: '5px', paddingRight: '5px' }}>
+          <div className="inline-block">
             <TextField
               className="room-input"
               label="Pokój"
-              style={{ width: '100px' }}
+              style={{ width: '60px' }}
               value={inputRoom}
               onChange={inputRoomChange}
+              onKeyUp={e => {
+                this.handleKeyUp(e);
+              }}
               margin="dense"
               variant="standard"
             />
-            <ConnectionStatus />
-          </span>
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ marginTop: '17px' }}
-            onClick={() => connectToRoom()}
-          >
-            Zmien pokój
-          </Button>
+          </div>
+          {showChangeRoom && (
+            <Button
+              variant="contained"
+              color="primary"
+              style={{
+                marginBottom: '3px',
+                marginLeft: '5px',
+                marginRight: '5px'
+              }}
+              onClick={() => connectToRoom()}
+            >
+              Połącz
+            </Button>
+          )}
+          <ConnectionStatus />
         </div>
         <TicTacToe />
         <div className="footer" />
@@ -80,12 +103,6 @@ const mapDispatchToProps = dispatch => ({
   connectToRoom: () => {
     emitToRoom('ROOM_CONNECT', data => {
       dispatch({ type: 'ROOM_CONNECT_RESULT', data });
-      if (!data.connected) {
-        alert(data.info);
-        console.log(data.info);
-      } else {
-        console.log(data.info);
-      }
     });
   },
   inputRoomChange: newRoom => {

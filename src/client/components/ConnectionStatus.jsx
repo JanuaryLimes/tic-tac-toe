@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
-import Tooltip from '@material-ui/core/Tooltip';
+import { CheckCircle, Warning } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class ConnectionStatus extends Component {
   render() {
-    const { tooltipText } = this.props;
+    const { info, inputRoom, connectedRoom } = this.props;
+    const showChangeRoom = inputRoom !== connectedRoom;
 
     return (
-      <span>
-        <Tooltip title={tooltipText}>
-          <span style={{ padding: '5px' }}>o</span>
-        </Tooltip>
-      </span>
+      <div className="inline-block">
+        <div style={{ paddingBottom: '8px', paddingLeft: '20px' }}>
+          {this.statusIcon()}
+          <div
+            className="inline-block inline-middle"
+            style={{ marginTop: '4px' }}
+          >
+            <div style={{ fontSize: '0.75rem', paddingLeft: '4px' }}>
+              {info}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  statusIcon() {
+    const { roomIsFull } = this.props;
+
+    if (roomIsFull) {
+      return <Warning className="inline-middle" style={{ color: 'red' }} />;
+    }
+    return (
+      <CheckCircle className="inline-middle" style={{ color: '#31ff31' }} />
     );
   }
 }
@@ -23,7 +43,10 @@ ConnectionStatus.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    tooltipText: state.connection.tooltipText
+    info: state.connection.info,
+    connectedRoom: state.connection.connectedRoom,
+    inputRoom: state.connection.inputRoom,
+    roomIsFull: state.connection.roomIsFull
   };
 };
 

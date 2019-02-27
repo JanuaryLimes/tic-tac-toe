@@ -8,7 +8,7 @@ class Connection {
   constructor() {
     this.inputRoom = getDefaultId();
     this.connectedRoom = '';
-    this.tooltipText = 'Pokój jest pełny';
+    this.tooltipText = '';
   }
 }
 
@@ -66,7 +66,12 @@ const tictactoe = (state = new Game(), action) => {
 const connection = (state = new Connection(), action) => {
   switch (action.type) {
     case 'ROOM_CONNECT_RESULT':
-      return { ...state, connectedRoom: action.data.connectedRoom };
+      return {
+        ...state,
+        connectedRoom: action.data.connectedRoom,
+        info: action.data.info,
+        roomIsFull: action.data.roomIsFull
+      };
     case 'INPUT_ROOM_CHANGE':
       return { ...state, inputRoom: action.newRoom.target.value };
     default:
