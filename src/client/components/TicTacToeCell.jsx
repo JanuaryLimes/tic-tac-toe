@@ -23,7 +23,7 @@ export default class TicTacToeCell extends Component {
                 r="45%"
                 cy="50%"
                 stroke="white"
-                stroke-width="10%"
+                strokeWidth="10%"
                 fill="transparent"
               />
               Sorry, your browser does not support inline SVG.
