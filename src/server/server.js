@@ -83,6 +83,7 @@ io.on('connection', function(socket) {
   });
 
   // todo: weryfikacja czy emit jest wyslany z pokoju czy z zewnatrz
+  //
 
   socket.on('NEW_GAME', room => {
     console.log('new game');
