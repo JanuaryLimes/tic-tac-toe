@@ -42,14 +42,8 @@ http.listen(PORT, function() {
 
 io.on('connection', function(socket) {
   socket.on('ROOM_CONNECT', (...args) => {
-    console.log(args);
-
     const ackCallback = args.pop();
-    const [room, ...restArgs] = args;
-
-    console.log(room);
-    console.log(restArgs);
-    console.log(ackCallback);
+    const room = args.shift();
 
     socket.leaveAll();
 
@@ -82,10 +76,6 @@ io.on('connection', function(socket) {
       });
     }
   });
-
-  // socket.on('dispatch', function(data) {
-  //   socket.broadcast.to(data.room).emit('dispatch', data);
-  // });
 
   console.log('a user connected');
   socket.on('disconnect', function() {
