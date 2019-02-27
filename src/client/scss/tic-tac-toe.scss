@@ -188,3 +188,18 @@ html {
 .footer {
   flex: 0.1;
 }
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline-middle {
+  display: inline-block;
+  vertical-align: middle;
+}

@@ -56,18 +56,29 @@ io.on('connection', function(socket) {
     const rooms = socket.adapter.rooms;
     if (!rooms[room] || rooms[room].length < 2) {
       socket.join(room, err => {
-        console.log('user joined room: ' + room);
-        ackCallback({
-          connected: true,
-          connectedRoom: room,
-          info: 'polaczono'
-        });
+        if (err) {
+          ackCallback({
+            connected: false,
+            connectedRoom: null,
+            info: 'Błąd: ' + err,
+            roomIsFull: false
+          });
+        } else {
+          console.log('Połączono do pokoju ' + room);
+          ackCallback({
+            connected: true,
+            connectedRoom: room,
+            info: 'Połączono do pokoju ' + room,
+            roomIsFull: false
+          });
+        }
       });
     } else {
       ackCallback({
         connected: false,
         connectedRoom: null,
-        info: 'pokoj jest pelny'
+        info: 'Pokój ' + room + ' jest pełny',
+        roomIsFull: true
       });
     }
   });
