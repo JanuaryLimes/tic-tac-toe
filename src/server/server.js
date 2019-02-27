@@ -9,7 +9,7 @@ app.use((req, res, next) => {
   const status = 302;
 
   if (environments.indexOf(process.env.NODE_ENV) >= 0) {
-    if (req.headers['x-forwarded-proto'] != 'https') {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
       res.redirect(status, 'https://' + req.hostname + req.originalUrl);
     } else {
       next();
