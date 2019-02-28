@@ -18,8 +18,6 @@ html {
 
 .main-div {
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
   height: 100%;
   box-sizing: border-box;
 }
@@ -32,8 +30,12 @@ html {
   align-items: center;
 
   .board {
+    width: 90vmin;
+    height: 90vmin;
     max-width: $max-board-size;
     max-height: $max-board-size;
+    min-width: $min-board-size;
+    min-height: $min-board-size;
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -94,48 +96,20 @@ html {
         .show-x,
         .show-o {
           display: none;
-          height: 100%;
-          width: 100%;
+          height: 90%;
+          width: 90%;
+          position: relative;
         }
 
         &.O {
           .show-o {
             display: block;
-            position: relative;
-
-            .circle {
-              position: absolute;
-              width: 80%;
-              height: 80%;
-              right: 10%;
-              bottom: 10%;
-            }
           }
-        }
-
-        .element-color {
-          background: white;
-          width: 100%;
-          height: 100%;
         }
 
         &.X {
           .show-x {
             display: block;
-            position: relative;
-            transform: rotate(45deg);
-
-            .line-1 {
-              width: 100%;
-              height: 100%;
-              padding: 45% 0;
-            }
-            .line-2 {
-              width: 100%;
-              height: 100%;
-              padding: 0 45%;
-              transform: translateX(0%) translateY(-100%);
-            }
           }
         }
       }
@@ -184,15 +158,16 @@ html {
 //   color: aqua;
 // }
 
-.header,
-.footer {
-  flex: 0.1;
-}
-
 .header {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.6rem;
+  padding-top: 5rem;
 }
 
 .inline-block {
