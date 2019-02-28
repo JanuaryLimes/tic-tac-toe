@@ -73,7 +73,7 @@ class Main extends Component {
         </div>
         <TicTacToe />
         <div className="footer">
-          {/* <div>
+          <div>
             Icons made by{' '}
             <a
               href="https://www.flaticon.com/authors/roundicons"
@@ -93,7 +93,7 @@ class Main extends Component {
             >
               CC 3.0 BY
             </a>
-          </div> */}
+          </div>
         </div>
       </div>
     );
