@@ -56,8 +56,6 @@ const tictactoe = (state = new Game(), action) => {
     case 'CELL_CLICK':
       const afterClick = getAfterClickState(state, action);
       return checkWinner(afterClick);
-    case 'BOARD_SIZE_CHANGE':
-      return { ...state, boardSize: action.boardSize };
     default:
       return state;
   }

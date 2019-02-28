@@ -3,26 +3,14 @@ import TicTacToeCell from './TicTacToeCell';
 import { connect } from 'react-redux';
 import { emitToRoom } from '../socket.io/socket.io';
 import PropTypes from 'prop-types';
-import ReactResizeDetector from 'react-resize-detector';
 
 class TicTacToe extends Component {
-  onResize = (width, height) => {
-    const size = Math.min(width, height);
-    this.props.handleBoardSizeChange(size);
-  };
-
   render() {
-    const {
-      cells,
-      ticTacToeCellClick,
-      gameOver,
-      gameOverInfo,
-      boardSize
-    } = this.props;
+    const { cells, ticTacToeCellClick, gameOver, gameOverInfo } = this.props;
 
     return (
       <div className="board-container">
-        <div className="board" style={{ width: boardSize, height: boardSize }}>
+        <div className="board">
           {cells.map(cell => {
             return (
               <TicTacToeCell
@@ -41,11 +29,6 @@ class TicTacToe extends Component {
             </div>
           )}
         </div>
-        <ReactResizeDetector
-          handleWidth
-          handleHeight
-          onResize={this.onResize}
-        />
       </div>
     );
   }
@@ -61,17 +44,13 @@ TicTacToe.propTypes = {
 const mapStateToProps = state => ({
   cells: state.tictactoe.cells,
   gameOver: state.tictactoe.gameOver,
-  gameOverInfo: state.tictactoe.gameOverInfo,
-  boardSize: state.tictactoe.boardSize
+  gameOverInfo: state.tictactoe.gameOverInfo
 });
 
 const mapDispatchToProps = dispatch => ({
   ticTacToeCellClick: id => {
     emitToRoom('CELL_CLICK', id);
     dispatch({ type: 'CELL_CLICK', id });
-  },
-  handleBoardSizeChange: boardSize => {
-    dispatch({ type: 'BOARD_SIZE_CHANGE', boardSize });
   }
 });
 
