@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 
 class ConnectionStatus extends Component {
   render() {
-    const { info, inputRoom, connectedRoom } = this.props;
-    const showChangeRoom = inputRoom !== connectedRoom;
+    const { info } = this.props;
 
     return (
       <div className="inline-block">
