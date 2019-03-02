@@ -9,9 +9,6 @@ import { Provider } from 'react-redux';
 import { store } from './client/redux/store';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-import { createStore, applyMiddleware } from 'redux';
-import { rootReducer } from './client/redux/reducers';
-
 const theme = createMuiTheme({
   palette: {
     type: 'dark' // Switching the dark mode on is a single property value change.
@@ -29,11 +26,9 @@ const customMiddleWare = store => next => action => {
   next(action);
 };
 
-var myStore = createStore(rootReducer, applyMiddleware(customMiddleWare));
-
 ReactDOM.render(
   <div>
-    <Provider store={myStore}>
+    <Provider store={store}>
       <MuiThemeProvider theme={theme}>
         <Main />
       </MuiThemeProvider>

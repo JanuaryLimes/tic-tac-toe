@@ -25,6 +25,14 @@ socket.on('NEW_GAME', () => {
   store.dispatch({ type: 'NEW_GAME' });
 });
 
+socket.on('PLAYER_JOINED_THE_ROOM', args => {
+  store.dispatch({ type: 'PLAYER_JOINED_THE_ROOM', args });
+  console.log('client on ROOM_CONNECT', args);
+  if (args.playersInRoom === 2) {
+    store.dispatch({ type: 'NEW_GAME' });
+  }
+});
+
 const emitToRoom = (event, ...args) => {
   const inputRoom = store.getState().connection.inputRoom;
 
