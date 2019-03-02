@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { emitToRoom } from '../socket.io/socket.io';
 import PropTypes from 'prop-types';
 import ConnectionStatus from './ConnectionStatus';
+import { store } from '../redux/store';
 
 class Main extends Component {
   componentDidMount() {
@@ -24,7 +25,8 @@ class Main extends Component {
       inputRoom,
       connectToRoom,
       connectedRoom,
-      inputRoomChange
+      inputRoomChange,
+      playersInRoom
     } = this.props;
 
     const showChangeRoom = inputRoom !== connectedRoom;
@@ -33,43 +35,42 @@ class Main extends Component {
     return (
       <div className="main-div">
         <div className="header">
-          {/* <Button
-            variant="contained"
-            color="primary"
-            onClick={() => newGameClick()}
-          >
-            Nowa gra
-          </Button> */}
-
-          <div className="inline-block">
-            <TextField
-              className="room-input"
-              label="Pokój"
-              style={{ width: '60px' }}
-              value={inputRoom}
-              onChange={inputRoomChange}
-              onKeyUp={e => {
-                this.handleKeyUp(e);
-              }}
-              margin="dense"
-              variant="standard"
-            />
+          <div className="header-top">
+            <div className="inline-block">
+              <TextField
+                className="room-input"
+                label="Pokój"
+                style={{ width: '60px' }}
+                value={inputRoom}
+                onChange={inputRoomChange}
+                onKeyUp={e => {
+                  this.handleKeyUp(e);
+                }}
+                margin="dense"
+                variant="standard"
+              />
+            </div>
+            {showChangeRoom && (
+              <Button
+                variant="contained"
+                color="primary"
+                style={{
+                  marginBottom: '3px',
+                  marginLeft: '5px',
+                  marginRight: '5px'
+                }}
+                onClick={() => connectToRoom()}
+              >
+                Połącz
+              </Button>
+            )}
+            <ConnectionStatus />
           </div>
-          {showChangeRoom && (
-            <Button
-              variant="contained"
-              color="primary"
-              style={{
-                marginBottom: '3px',
-                marginLeft: '5px',
-                marginRight: '5px'
-              }}
-              onClick={() => connectToRoom()}
-            >
-              Połącz
-            </Button>
+          {playersInRoom < 2 && (
+            <div className="header-wait-for-second-player">
+              Oczekiwanie na drugiego gracza
+            </div>
           )}
-          <ConnectionStatus />
         </div>
         <TicTacToe />
         <div className="footer">
@@ -78,11 +79,16 @@ class Main extends Component {
             <a
               href="https://www.flaticon.com/authors/roundicons"
               title="Roundicons"
+              rel="noopener noreferrer"
             >
               Roundicons
             </a>{' '}
             from{' '}
-            <a href="https://www.flaticon.com/" title="Flaticon">
+            <a
+              href="https://www.flaticon.com/"
+              rel="noopener noreferrer"
+              title="Flaticon"
+            >
               www.flaticon.com
             </a>{' '}
             is licensed by{' '}
@@ -90,6 +96,7 @@ class Main extends Component {
               href="http://creativecommons.org/licenses/by/3.0/"
               title="Creative Commons BY 3.0"
               target="_blank"
+              rel="noopener noreferrer"
             >
               CC 3.0 BY
             </a>
@@ -110,7 +117,8 @@ Main.propTypes = {
 const mapStateToProps = state => {
   return {
     connectedRoom: state.connection.connectedRoom,
-    inputRoom: state.connection.inputRoom
+    inputRoom: state.connection.inputRoom,
+    playersInRoom: state.connection.playersInRoom
   };
 };
 
@@ -122,6 +130,10 @@ const mapDispatchToProps = dispatch => ({
   connectToRoom: () => {
     emitToRoom('ROOM_CONNECT', data => {
       dispatch({ type: 'ROOM_CONNECT_RESULT', data });
+      const state = store.getState();
+      if (state.connection.playersInRoom === 2) {
+        dispatch({ type: 'NEW_GAME' });
+      }
     });
   },
   inputRoomChange: newRoom => {

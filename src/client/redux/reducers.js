@@ -7,8 +7,6 @@ export const Player_O = 'Player_O';
 class Connection {
   constructor() {
     this.inputRoom = getDefaultId();
-    this.connectedRoom = '';
-    this.tooltipText = '';
   }
 }
 
@@ -17,6 +15,7 @@ class Game {
     this.cells = getGameCells();
     this.turn = Player_O;
     this.gameOver = false;
+    this.gameStarted = false;
   }
 }
 
@@ -66,12 +65,12 @@ const connection = (state = new Connection(), action) => {
     case 'ROOM_CONNECT_RESULT':
       return {
         ...state,
-        connectedRoom: action.data.connectedRoom,
-        info: action.data.info,
-        roomIsFull: action.data.roomIsFull
+        ...action.data
       };
     case 'INPUT_ROOM_CHANGE':
       return { ...state, inputRoom: action.newRoom.target.value };
+    case 'PLAYER_JOINED_THE_ROOM':
+      return { ...state, ...action.args };
     default:
       return state;
   }

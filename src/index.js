@@ -7,8 +7,8 @@ import Main from './client/components/Main';
 import './client/scss/tic-tac-toe.scss';
 import { Provider } from 'react-redux';
 import { store } from './client/redux/store';
-
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 const theme = createMuiTheme({
   palette: {
     type: 'dark' // Switching the dark mode on is a single property value change.
@@ -16,14 +16,30 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true }
 });
 
-console.log(store.getState());
+// console.log(store().getState());
+
+const customMiddleWare = store => next => action => {
+  console.log('###store', store);
+  console.log('###next', next);
+  console.log('###action', action);
+  //console.log('Middleware triggered:', action);
+  next(action);
+};
 
 ReactDOM.render(
-  <Provider store={store}>
-    <MuiThemeProvider theme={theme}>
-      <Main />
-    </MuiThemeProvider>
-  </Provider>,
+  <div>
+    <Provider store={store}>
+      <MuiThemeProvider theme={theme}>
+        <Main />
+      </MuiThemeProvider>
+    </Provider>
+
+    {/* <Provider store={store}>
+      <MuiThemeProvider theme={theme}>
+        <Main />
+      </MuiThemeProvider>
+    </Provider> */}
+  </div>,
   document.getElementById('root')
 );
 

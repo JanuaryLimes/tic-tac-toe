@@ -159,9 +159,17 @@ html {
 // }
 
 .header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  .header-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .header-wait-for-second-player {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
 }
 
 .footer {

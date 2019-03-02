@@ -47,33 +47,35 @@ io.on('connection', function(socket) {
 
     socket.leaveAll();
 
+    const data = {
+      connected: false,
+      connectedRoom: null,
+      roomIsFull: false,
+      error: null,
+      playersInRoom: 0
+    };
+
     const rooms = socket.adapter.rooms;
     if (!rooms[room] || rooms[room].length < 2) {
       socket.join(room, err => {
         if (err) {
-          ackCallback({
-            connected: false,
-            connectedRoom: null,
-            info: 'Błąd: ' + err,
-            roomIsFull: false
-          });
+          ackCallback({ ...data, error: err });
         } else {
           console.log('Połączono do pokoju ' + room);
-          ackCallback({
+          const callbackData = {
+            ...data,
             connected: true,
             connectedRoom: room,
-            info: 'Połączono do pokoju ' + room,
-            roomIsFull: false
-          });
+            playersInRoom: rooms[room].length
+          };
+          ackCallback(callbackData);
+          socket.broadcast
+            .to(room)
+            .emit('PLAYER_JOINED_THE_ROOM', callbackData);
         }
       });
     } else {
-      ackCallback({
-        connected: false,
-        connectedRoom: null,
-        info: 'Pokój ' + room + ' jest pełny',
-        roomIsFull: true
-      });
+      ackCallback({ ...data, roomIsFull: true });
     }
   });
 
