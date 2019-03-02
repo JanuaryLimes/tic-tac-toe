@@ -41,10 +41,13 @@ http.listen(PORT, function() {
 });
 
 io.on('connection', function(socket) {
+  console.log('a user connected');
+
   socket.on('ROOM_CONNECT', (...args) => {
     const ackCallback = args.pop();
     const room = args.shift();
 
+    emitPlayerDisconnected(socket);
     socket.leaveAll();
 
     const data = {
@@ -61,7 +64,7 @@ io.on('connection', function(socket) {
         if (err) {
           ackCallback({ ...data, error: err });
         } else {
-          console.log('Połączono do pokoju ' + room);
+          console.log('Połączono do pokoju ' + room, socket.id);
           const callbackData = {
             ...data,
             connected: true,
@@ -79,18 +82,39 @@ io.on('connection', function(socket) {
     }
   });
 
-  console.log('a user connected');
-  socket.on('disconnect', function() {
-    console.log('user disconnected');
+  const emitPlayerDisconnected = socket => {
+    if (socket.rooms) {
+      console.log('socket.rooms', socket.rooms);
+      Object.keys(socket.rooms).forEach(room => {
+        console.log('room...', room);
+        if (socket.adapter.rooms && socket.adapter.rooms[room]) {
+          console.log(
+            'po ifie',
+            socket.adapter.rooms,
+            socket.adapter.rooms[room]
+          );
+          const playersInRoom = socket.adapter.rooms[room].length - 1;
+          console.log('playersInRoom', playersInRoom);
+          socket.broadcast.to(room).emit('PLAYER_DISCONNECTED', playersInRoom);
+        }
+      });
+    }
+  };
+
+  socket.on('disconnecting', reason => {
+    emitPlayerDisconnected(socket);
+    console.log('user disconnecting', reason);
   });
 
-  // todo: weryfikacja czy emit jest wyslany z pokoju czy z zewnatrz
-  //
+  socket.on('disconnect', function(reason) {
+    console.log('user disconnected', reason);
+  });
 
   socket.on('NEW_GAME', room => {
     console.log('new game');
     socket.broadcast.to(room).emit('NEW_GAME');
   });
+
   socket.on('CELL_CLICK', (room, msg) => {
     console.log(msg);
     socket.broadcast.to(room).emit('CELL_CLICK', msg);

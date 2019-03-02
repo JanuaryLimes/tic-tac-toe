@@ -18,13 +18,13 @@ const theme = createMuiTheme({
 
 // console.log(store().getState());
 
-const customMiddleWare = store => next => action => {
-  console.log('###store', store);
-  console.log('###next', next);
-  console.log('###action', action);
-  //console.log('Middleware triggered:', action);
-  next(action);
-};
+// const customMiddleWare = store => next => action => {
+//   console.log('###store', store);
+//   console.log('###next', next);
+//   console.log('###action', action);
+//   //console.log('Middleware triggered:', action);
+//   next(action);
+// };
 
 ReactDOM.render(
   <div>

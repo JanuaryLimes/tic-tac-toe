@@ -30,7 +30,6 @@ class Main extends Component {
     } = this.props;
 
     const showChangeRoom = inputRoom !== connectedRoom;
-    console.log('showChangeRoom', showChangeRoom);
 
     return (
       <div className="main-div">
