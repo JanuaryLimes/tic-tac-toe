@@ -27,10 +27,15 @@ socket.on('NEW_GAME', () => {
 
 socket.on('PLAYER_JOINED_THE_ROOM', args => {
   store.dispatch({ type: 'PLAYER_JOINED_THE_ROOM', args });
-  console.log('client on ROOM_CONNECT', args);
+  console.log('client on ROOM_CONNECT');
   if (args.playersInRoom === 2) {
     store.dispatch({ type: 'NEW_GAME' });
   }
+});
+
+socket.on('PLAYER_DISCONNECTED', playersInRoom => {
+  store.dispatch({ type: 'PLAYER_DISCONNECTED', playersInRoom });
+  console.log('PLAYER_DISCONNECTED', playersInRoom);
 });
 
 const emitToRoom = (event, ...args) => {

@@ -71,6 +71,8 @@ const connection = (state = new Connection(), action) => {
       return { ...state, inputRoom: action.newRoom.target.value };
     case 'PLAYER_JOINED_THE_ROOM':
       return { ...state, ...action.args };
+    case 'PLAYER_DISCONNECTED':
+      return { ...state, playersInRoom: action.playersInRoom };
     default:
       return state;
   }
