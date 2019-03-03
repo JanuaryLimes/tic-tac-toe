@@ -26,8 +26,9 @@ socket.on('NEW_GAME', () => {
 });
 
 socket.on('PLAYER_JOINED_THE_ROOM', args => {
+  console.log('before PLAYER_JOINED_THE_ROOM', store.getState());
   store.dispatch({ type: 'PLAYER_JOINED_THE_ROOM', args });
-  console.log('client on ROOM_CONNECT');
+  console.log('after PLAYER_JOINED_THE_ROOM', store.getState());
   if (args.playersInRoom === 2) {
     store.dispatch({ type: 'NEW_GAME' });
   }
