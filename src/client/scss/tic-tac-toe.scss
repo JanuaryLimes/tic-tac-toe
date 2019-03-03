@@ -98,18 +98,25 @@ html {
           display: none;
           height: 90%;
           width: 90%;
-          position: relative;
         }
 
         &.O {
           .show-o {
             display: block;
+            background: url(../assets/circle.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
           }
         }
 
         &.X {
           .show-x {
             display: block;
+            background: url(../assets/cross.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
           }
         }
       }

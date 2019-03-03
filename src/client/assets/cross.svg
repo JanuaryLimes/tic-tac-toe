@@ -1,10 +1,59 @@
- <svg viewBox="0 0 146.4 146.4" width='146.4' height='146.4' >
-    <path
-      fill="#c43d27"
-      d="M113.6 0l-40 40L32.8 0 0 32.8l40.8 40L0 113.6l32.8 32.8 40.8-40.8 40 40.8 32.8-32.8-40-40.8 40-40z"
-    />
-    <path
-      fill="#991608"
-      d="M32.8 146.4l40.8-40.8 40 40.8 32.8-32.8-40-40.8 40-40L113.6 0l-40 40"
-    />
-  </svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 146.4 146.4"
+   xml:space="preserve"
+   sodipodi:docname="cross.svg"
+   width="146.39999"
+   height="146.39999"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"><metadata
+   id="metadata51"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
+   id="defs49" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1051"
+   id="namedview47"
+   showgrid="false"
+   inkscape:zoom="3.8311689"
+   inkscape:cx="121.00197"
+   inkscape:cy="76.530222"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+
+<polygon
+   style="fill:#c43d27"
+   points="449.6,73.6 416.8,40.8 376.8,80.8 336,40.8 303.2,73.6 344,113.6 303.2,154.4 336,187.2 376.8,146.4 416.8,187.2 449.6,154.4 409.6,113.6 "
+   id="polygon4"
+   transform="translate(-303.2,-40.8)" />
+<g
+   id="g8"
+   transform="translate(-303.2,-40.8)">
+	<polyline
+   style="fill:#991608"
+   points="336,187.2 376.8,146.4 416.8,187.2 449.6,154.4 409.6,113.6 449.6,73.6 416.8,40.8    376.8,80.8  "
+   id="polyline6" />
+</g>
+</svg>
