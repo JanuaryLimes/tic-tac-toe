@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { checkWinner, getAfterClickState } from './actions';
 
-export const Player_X = 'Player_X';
-export const Player_O = 'Player_O';
+export const cross = 'cross';
+export const circle = 'circle';
 
 class Connection {
   constructor() {
@@ -13,7 +13,7 @@ class Connection {
 class Game {
   constructor() {
     this.cells = getGameCells();
-    this.turn = Player_O;
+    this.turn = cross;
     this.gameOver = false;
     this.gameStarted = false;
   }
@@ -51,7 +51,7 @@ export class Cell {
 const tictactoe = (state = new Game(), action) => {
   switch (action.type) {
     case 'NEW_GAME':
-      return new Game();
+      return { ...new Game(), gameStarted: true };
     case 'CELL_CLICK':
       const afterClick = getAfterClickState(state, action);
       return checkWinner(afterClick);

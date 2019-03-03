@@ -26,7 +26,9 @@ class Main extends Component {
       connectToRoom,
       connectedRoom,
       inputRoomChange,
-      playersInRoom
+      playersInRoom,
+      gameStarted,
+      turn
     } = this.props;
 
     const showChangeRoom = inputRoom !== connectedRoom;
@@ -66,8 +68,14 @@ class Main extends Component {
             <ConnectionStatus />
           </div>
           {playersInRoom < 2 && (
-            <div className="header-wait-for-second-player">
+            <div className="center header-wait-for-second-player">
               Oczekiwanie na drugiego gracza
+            </div>
+          )}
+          {gameStarted && (
+            <div className="center header-turn-indicator">
+              <div className={['icon-cross', turn].join(' ')} />
+              <div className={['icon-circle', turn].join(' ')} />
             </div>
           )}
         </div>
@@ -117,7 +125,9 @@ const mapStateToProps = state => {
   return {
     connectedRoom: state.connection.connectedRoom,
     inputRoom: state.connection.inputRoom,
-    playersInRoom: state.connection.playersInRoom
+    playersInRoom: state.connection.playersInRoom,
+    gameStarted: state.tictactoe.gameStarted,
+    turn: state.tictactoe.turn
   };
 };
 

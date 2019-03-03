@@ -69,12 +69,16 @@ io.on('connection', function(socket) {
             ...data,
             connected: true,
             connectedRoom: room,
-            playersInRoom: rooms[room].length
+            playersInRoom: rooms[room].length,
+            playerSide: 'cross'
           };
           ackCallback(callbackData);
           socket.broadcast
             .to(room)
-            .emit('PLAYER_JOINED_THE_ROOM', callbackData);
+            .emit('PLAYER_JOINED_THE_ROOM', {
+              ...callbackData,
+              playerSide: 'circle'
+            });
         }
       });
     } else {
