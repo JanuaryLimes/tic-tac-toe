@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import TicTacToeCell from './TicTacToeCell';
 import { connect } from 'react-redux';
-import { emitToRoom } from '../socket.io/socket.io';
 import PropTypes from 'prop-types';
 
 class TicTacToe extends Component {
   render() {
-    const { cells, ticTacToeCellClick, gameOver, gameOverInfo } = this.props;
+    const { cells, gameOver, gameOverInfo } = this.props;
 
     return (
       <div className="board-container">
         <div className="board">
           {cells.map(cell => {
-            return (
-              <TicTacToeCell
-                key={cell.id}
-                cell={cell}
-                id={cell.id}
-                click={ticTacToeCellClick}
-              />
-            );
+            return <TicTacToeCell key={cell.id} cell={cell} id={cell.id} />;
           })}
           {gameOver && (
             <div className="info">
@@ -36,7 +28,6 @@ class TicTacToe extends Component {
 
 TicTacToe.propTypes = {
   cells: PropTypes.array,
-  ticTacToeCellClick: PropTypes.func,
   gameOver: PropTypes.bool,
   gameOverInfo: PropTypes.string
 };
@@ -47,14 +38,4 @@ const mapStateToProps = state => ({
   gameOverInfo: state.tictactoe.gameOverInfo
 });
 
-const mapDispatchToProps = dispatch => ({
-  ticTacToeCellClick: id => {
-    emitToRoom('CELL_CLICK', id);
-    dispatch({ type: 'CELL_CLICK', id });
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TicTacToe);
+export default connect(mapStateToProps)(TicTacToe);

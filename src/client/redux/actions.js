@@ -1,11 +1,11 @@
-import { Player_O, Player_X } from './reducers';
+import { cross, circle } from './reducers';
 
 export const getAfterClickState = (state, action) => {
   if (state.cells.find(cell => cell.id === action.id).isUsed) {
     return state;
   }
-  const newTurn = state.turn === Player_O ? Player_X : Player_O;
-  const newVal = state.turn === Player_O ? 'O' : 'X';
+  const newTurn = state.turn === circle ? cross : circle;
+  const newVal = state.turn === circle ? circle : cross;
   let afterClick = {
     ...state,
     cells: state.cells.map(cell =>
@@ -31,11 +31,11 @@ export const checkWinner = afterClickState => {
   var cells = afterClickState.cells;
 
   var ooo = cells
-    .filter(cell => cell.isUsed && cell.value === 'O')
+    .filter(cell => cell.isUsed && cell.value === circle)
     .map(cell => cell.id);
 
   var xxx = cells
-    .filter(cell => cell.isUsed && cell.value === 'X')
+    .filter(cell => cell.isUsed && cell.value === cross)
     .map(cell => cell.id);
 
   var result = { ...afterClickState };
