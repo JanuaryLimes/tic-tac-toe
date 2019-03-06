@@ -142,8 +142,6 @@ html {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-  .header-wait-for-second-player {
-  }
   .header-turn-indicator {
     .icon-cross {
       height: 40px;
@@ -178,23 +176,35 @@ html {
       }
     }
   }
+
+  .connection-status {
+    padding-bottom: 8px;
+    display: flex;
+    align-items: flex-end;
+
+    .connection-status-info {
+      font-size: 0.8rem;
+      padding-left: 4px;
+      padding-bottom: 4px;
+    }
+
+    .warning {
+      color: red;
+    }
+
+    .check-circle {
+      color: #31ff31;
+    }
+  }
 }
 
 .footer {
   text-align: center;
   font-size: 0.75rem;
   padding-top: 5rem;
+  padding-bottom: 1rem;
 
   .link {
     color: white;
   }
-}
-
-.inline-block {
-  display: inline-block;
-}
-
-.inline-middle {
-  display: inline-block;
-  vertical-align: middle;
 }
