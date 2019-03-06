@@ -182,8 +182,12 @@ html {
 
 .footer {
   text-align: center;
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   padding-top: 5rem;
+
+  .link {
+    color: white;
+  }
 }
 
 .inline-block {
