@@ -5,6 +5,7 @@ import ConnectionStatus from './ConnectionStatus';
 import { connect } from 'react-redux';
 import { emitToRoom } from '../../socket.io/socket.io';
 import { store } from '../../redux/store';
+import ScoresAndTurn from './ScoresAndTurn';
 
 class Header extends Component {
   componentDidMount() {
@@ -22,9 +23,7 @@ class Header extends Component {
       connectToRoom,
       connectedRoom,
       inputRoomChange,
-      playersInRoom,
-      gameStarted,
-      turn
+      playersInRoom
     } = this.props;
 
     const showChangeRoom = inputRoom !== connectedRoom;
@@ -65,12 +64,7 @@ class Header extends Component {
             Oczekiwanie na drugiego gracza
           </div>
         )}
-        {gameStarted && (
-          <div className="center header-turn-indicator">
-            <div className={['icon-cross', turn].join(' ')} />
-            <div className={['icon-circle', turn].join(' ')} />
-          </div>
-        )}
+        <ScoresAndTurn />
       </div>
     );
   }
@@ -81,16 +75,11 @@ const mapStateToProps = state => {
     connectedRoom: state.connection.connectedRoom,
     inputRoom: state.connection.inputRoom,
     playersInRoom: state.connection.playersInRoom,
-    gameStarted: state.tictactoe.gameStarted,
-    turn: state.tictactoe.turn
+    gameStarted: state.tictactoe.gameStarted
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  newGameClick: () => {
-    emitToRoom('NEW_GAME');
-    dispatch({ type: 'NEW_GAME' });
-  },
   connectToRoom: () => {
     emitToRoom('ROOM_CONNECT', data => {
       dispatch({ type: 'ROOM_CONNECT_RESULT', data });

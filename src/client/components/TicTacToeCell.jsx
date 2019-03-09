@@ -51,7 +51,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   ticTacToeCellClick: id => {
     emitToRoom('CELL_CLICK', id);
-    dispatch({ type: 'CELL_CLICK', id });
   }
 });
 

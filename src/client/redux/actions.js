@@ -45,14 +45,16 @@ export const checkWinner = afterClickState => {
       result = {
         ...afterClickState,
         gameOver: true,
-        gameOverInfo: 'Wygrały kółka'
+        gameOverInfo: 'Wygrały kółka',
+        circleResult: afterClickState.circleResult + 1
       };
     }
     if (combination.every(index => xxx.indexOf(index) > -1)) {
       result = {
         ...afterClickState,
         gameOver: true,
-        gameOverInfo: 'Wygrały krzyżyki'
+        gameOverInfo: 'Wygrały krzyżyki',
+        crossResult: afterClickState.crossResult + 1
       };
     }
   });

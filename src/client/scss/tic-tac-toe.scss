@@ -77,6 +77,10 @@ html {
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
+
+            &.animate {
+              animation: win-pulse 0.75s ease-in-out infinite alternate;
+            }
           }
         }
 
@@ -87,6 +91,25 @@ html {
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
+
+            &.animate {
+              animation: win-pulse 0.75s ease-in-out infinite alternate;
+            }
+          }
+        }
+
+        @keyframes win-pulse {
+          0% {
+            transform: scale(1);
+          }
+          30% {
+            transform: scale(1.1);
+          }
+          60% {
+            transform: scale(1);
+          }
+          100% {
+            transform: scale(0.9);
           }
         }
       }
@@ -142,11 +165,22 @@ html {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
+
   .header-turn-indicator {
+    .scores {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-size: 1.5rem;
+        font-weight: 500;
+        padding: 0 1.75rem;
+      }
+    }
+
     .icon-cross {
       height: 40px;
       width: 40px;
-      margin-right: 50px;
       background: url(../assets/cross.svg);
       background-repeat: no-repeat;
       background-size: contain;
