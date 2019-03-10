@@ -16,6 +16,8 @@ class Game {
     this.turn = cross;
     this.gameOver = false;
     this.gameStarted = false;
+    this.circleResult = 0;
+    this.crossResult = 0;
   }
 }
 
@@ -51,7 +53,12 @@ export class Cell {
 const tictactoe = (state = new Game(), action) => {
   switch (action.type) {
     case 'NEW_GAME':
-      return { ...new Game(), gameStarted: true };
+      return {
+        ...new Game(),
+        gameStarted: true,
+        circleResult: state.circleResult,
+        crossResult: state.crossResult
+      };
     case 'CELL_CLICK':
       const afterClick = getAfterClickState(state, action);
       return checkWinner(afterClick);

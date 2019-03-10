@@ -26,7 +26,9 @@ class TicTacToeCell extends Component {
 
     return (
       <div className="ttt-cell" onClick={() => this.click(id)}>
-        <div className={['ttt-cell-element', cell.value].join(' ')}>
+        <div
+          className={['ttt-cell-element', cell.value, cell.animate].join(' ')}
+        >
           <div className="show-cross" />
           <div className="show-circle" />
         </div>
@@ -51,7 +53,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   ticTacToeCellClick: id => {
     emitToRoom('CELL_CLICK', id);
-    dispatch({ type: 'CELL_CLICK', id });
   }
 });
 

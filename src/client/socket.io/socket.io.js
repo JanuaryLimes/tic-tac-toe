@@ -19,6 +19,17 @@ socket.on('connect', function() {
 
 socket.on('CELL_CLICK', msg => {
   store.dispatch({ type: 'CELL_CLICK', id: msg });
+
+  const thunkRestartGame = () => (dispatch, getState) => {
+    const { gameOver } = getState().tictactoe;
+    if (gameOver) {
+      setTimeout(() => {
+        emitToRoom('NEW_GAME');
+      }, 3000);
+    }
+  };
+
+  store.dispatch(thunkRestartGame());
 });
 
 socket.on('NEW_GAME', () => {

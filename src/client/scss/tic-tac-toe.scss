@@ -30,8 +30,8 @@ html {
   align-items: center;
 
   .board {
-    width: 90vmin;
-    height: 90vmin;
+    width: 70vmin;
+    height: 70vmin;
     max-width: $max-board-size;
     max-height: $max-board-size;
     min-width: $min-board-size;
@@ -78,6 +78,10 @@ html {
             background-size: contain;
             background-position: center;
           }
+
+          &.animate .show-circle {
+            animation: win-pulse 0.75s ease-in-out infinite;
+          }
         }
 
         &.cross {
@@ -87,6 +91,22 @@ html {
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
+          }
+
+          &.animate .show-cross {
+            animation: win-pulse 0.75s ease-in-out infinite;
+          }
+        }
+
+        @keyframes win-pulse {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(0.9);
+          }
+          100% {
+            transform: scale(1);
           }
         }
       }
@@ -142,13 +162,22 @@ html {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-  .header-wait-for-second-player {
-  }
+
   .header-turn-indicator {
+    .scores {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-size: 1.5rem;
+        font-weight: 500;
+        padding: 0 1.75rem;
+      }
+    }
+
     .icon-cross {
       height: 40px;
       width: 40px;
-      margin-right: 50px;
       background: url(../assets/cross.svg);
       background-repeat: no-repeat;
       background-size: contain;
@@ -178,23 +207,35 @@ html {
       }
     }
   }
+
+  .connection-status {
+    padding-bottom: 8px;
+    display: flex;
+    align-items: flex-end;
+
+    .connection-status-info {
+      font-size: 0.8rem;
+      padding-left: 4px;
+      padding-bottom: 4px;
+    }
+
+    .warning {
+      color: red;
+    }
+
+    .check-circle {
+      color: #31ff31;
+    }
+  }
 }
 
 .footer {
   text-align: center;
   font-size: 0.75rem;
   padding-top: 5rem;
+  padding-bottom: 1rem;
 
   .link {
     color: white;
   }
-}
-
-.inline-block {
-  display: inline-block;
-}
-
-.inline-middle {
-  display: inline-block;
-  vertical-align: middle;
 }

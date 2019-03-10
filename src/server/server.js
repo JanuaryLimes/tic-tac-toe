@@ -73,12 +73,10 @@ io.on('connection', function(socket) {
             playerSide: 'cross'
           };
           ackCallback(callbackData);
-          socket.broadcast
-            .to(room)
-            .emit('PLAYER_JOINED_THE_ROOM', {
-              ...callbackData,
-              playerSide: 'circle'
-            });
+          socket.broadcast.to(room).emit('PLAYER_JOINED_THE_ROOM', {
+            ...callbackData,
+            playerSide: 'circle'
+          });
         }
       });
     } else {
@@ -88,17 +86,10 @@ io.on('connection', function(socket) {
 
   const emitPlayerDisconnected = socket => {
     if (socket.rooms) {
-      //console.log('socket.rooms', socket.rooms);
+      console.log('emitPlayerDisconnected');
       Object.keys(socket.rooms).forEach(room => {
-        //console.log('room...', room);
         if (socket.adapter.rooms && socket.adapter.rooms[room]) {
-          // console.log(
-          //   'po ifie',
-          //   socket.adapter.rooms,
-          //   socket.adapter.rooms[room]
-          // );
           const playersInRoom = socket.adapter.rooms[room].length - 1;
-          //console.log('playersInRoom', playersInRoom);
           socket.broadcast.to(room).emit('PLAYER_DISCONNECTED', playersInRoom);
         }
       });
@@ -116,11 +107,11 @@ io.on('connection', function(socket) {
 
   socket.on('NEW_GAME', room => {
     console.log('new game');
-    socket.broadcast.to(room).emit('NEW_GAME');
+    io.in(room).emit('NEW_GAME');
   });
 
   socket.on('CELL_CLICK', (room, msg) => {
     console.log(msg);
-    socket.broadcast.to(room).emit('CELL_CLICK', msg);
+    io.in(room).emit('CELL_CLICK', msg);
   });
 });
