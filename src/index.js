@@ -35,6 +35,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+var userLang = navigator.language || navigator.userLanguage;
+if (userLang && userLang.toLowerCase().startsWith('pl')) {
+  document.title = 'Kółko i krzyżyk';
+}
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
