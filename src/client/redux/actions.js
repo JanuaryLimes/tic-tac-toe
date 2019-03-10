@@ -1,5 +1,7 @@
 import { cross, circle } from './reducers';
 
+const animate = 'animate';
+
 export const getAfterClickState = (state, action) => {
   if (state.cells.find(cell => cell.id === action.id).isUsed) {
     return state;
@@ -16,18 +18,25 @@ export const getAfterClickState = (state, action) => {
   return afterClick;
 };
 
-export const checkWinner = afterClickState => {
-  const winningCombinations = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-    [1, 5, 9],
-    [3, 5, 7],
-    [1, 4, 7],
-    [2, 5, 8],
-    [3, 6, 9]
-  ];
+const winningCombinations = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 5, 9],
+  [3, 5, 7],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9]
+];
 
+const markWinningCells = (cells, combination) => {
+  combination.forEach(id => {
+    cells.find(cell => cell.id === id).animate = animate;
+  });
+  return cells;
+};
+
+export const checkWinner = afterClickState => {
   var cells = afterClickState.cells;
 
   var ooo = cells
@@ -46,7 +55,8 @@ export const checkWinner = afterClickState => {
         ...afterClickState,
         gameOver: true,
         gameOverInfo: 'Wygrały kółka',
-        circleResult: afterClickState.circleResult + 1
+        circleResult: afterClickState.circleResult + 1,
+        cells: markWinningCells(cells, combination)
       };
     }
     if (combination.every(index => xxx.indexOf(index) > -1)) {
@@ -54,7 +64,8 @@ export const checkWinner = afterClickState => {
         ...afterClickState,
         gameOver: true,
         gameOverInfo: 'Wygrały krzyżyki',
-        crossResult: afterClickState.crossResult + 1
+        crossResult: afterClickState.crossResult + 1,
+        cells: markWinningCells(cells, combination)
       };
     }
   });

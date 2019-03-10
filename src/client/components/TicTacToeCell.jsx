@@ -26,7 +26,9 @@ class TicTacToeCell extends Component {
 
     return (
       <div className="ttt-cell" onClick={() => this.click(id)}>
-        <div className={['ttt-cell-element', cell.value].join(' ')}>
+        <div
+          className={['ttt-cell-element', cell.value, cell.animate].join(' ')}
+        >
           <div className="show-cross" />
           <div className="show-circle" />
         </div>

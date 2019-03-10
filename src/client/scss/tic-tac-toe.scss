@@ -30,8 +30,8 @@ html {
   align-items: center;
 
   .board {
-    width: 90vmin;
-    height: 90vmin;
+    width: 70vmin;
+    height: 70vmin;
     max-width: $max-board-size;
     max-height: $max-board-size;
     min-width: $min-board-size;
@@ -77,10 +77,10 @@ html {
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
+          }
 
-            &.animate {
-              animation: win-pulse 0.75s ease-in-out infinite alternate;
-            }
+          &.animate .show-circle {
+            animation: win-pulse 0.75s ease-in-out infinite;
           }
         }
 
@@ -91,10 +91,10 @@ html {
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
+          }
 
-            &.animate {
-              animation: win-pulse 0.75s ease-in-out infinite alternate;
-            }
+          &.animate .show-cross {
+            animation: win-pulse 0.75s ease-in-out infinite;
           }
         }
 
@@ -102,14 +102,11 @@ html {
           0% {
             transform: scale(1);
           }
-          30% {
-            transform: scale(1.1);
-          }
-          60% {
-            transform: scale(1);
+          50% {
+            transform: scale(0.9);
           }
           100% {
-            transform: scale(0.9);
+            transform: scale(1);
           }
         }
       }
