@@ -1,7 +1,10 @@
 {
   "cSpell.words": [
     "hiuston",
-    "tictactoe"
+    "middlewares",
+    "preloaded",
+    "tictactoe",
+    "unmount"
   ],
   "javascript.validate.enable": false
 }

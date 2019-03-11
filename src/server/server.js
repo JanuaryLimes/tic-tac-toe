@@ -107,7 +107,7 @@ io.on('connection', function(socket) {
 
   socket.on('NEW_GAME', room => {
     console.log('new game');
-    io.in(room).emit('NEW_GAME');
+    io.in(room).emit('NEW_GAME'); // tu jest chyba podwójne po wygranej...
   });
 
   socket.on('CELL_CLICK', (room, msg) => {

@@ -3,8 +3,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import ConnectionStatus from './ConnectionStatus';
 import { connect } from 'react-redux';
-import { emitToRoom } from '../../socket.io/socket.io';
-import { store } from '../../redux/store';
 import ScoresAndTurn from './ScoresAndTurn';
 
 class Header extends Component {
@@ -81,12 +79,19 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   connectToRoom: () => {
-    emitToRoom('ROOM_CONNECT', data => {
-      dispatch({ type: 'ROOM_CONNECT_RESULT', data });
-      const state = store.getState();
-      if (state.connection.playersInRoom === 2) {
-        dispatch({ type: 'NEW_GAME' });
-      }
+    dispatch({
+      type: 'SOCKET',
+      event: 'ROOM_CONNECT',
+      args: [
+        data => {
+          dispatch({ type: 'ROOM_CONNECT_RESULT', data });
+          dispatch((dispatch, getState) => {
+            if (getState().connection.playersInRoom === 2) {
+              dispatch({ type: 'NEW_GAME' });
+            }
+          });
+        }
+      ]
     });
   },
   inputRoomChange: newRoom => {
