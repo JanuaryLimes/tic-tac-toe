@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-// import App from './App';
-import * as serviceWorker from './serviceWorker';
 import Main from './client/components/Main';
-import './client/scss/tic-tac-toe.scss';
 import { Provider } from 'react-redux';
-import { store } from './client/redux/store';
+import './client/scss/tic-tac-toe.scss';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import configureStore from './client/redux/configureStore';
 
 const theme = createMuiTheme({
   palette: {
@@ -16,18 +13,8 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true }
 });
 
-// console.log(store().getState());
-
-// const customMiddleWare = store => next => action => {
-//   console.log('###store', store);
-//   console.log('###next', next);
-//   console.log('###action', action);
-//   //console.log('Middleware triggered:', action);
-//   next(action);
-// };
-
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={configureStore()}>
     <MuiThemeProvider theme={theme}>
       <Main />
     </MuiThemeProvider>
@@ -39,8 +26,3 @@ var userLang = navigator.language || navigator.userLanguage;
 if (userLang && userLang.toLowerCase().startsWith('pl')) {
   document.title = 'Kółko i krzyżyk';
 }
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();

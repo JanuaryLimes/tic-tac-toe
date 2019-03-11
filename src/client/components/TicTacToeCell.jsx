@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { emitToRoom } from '../socket.io/socket.io';
 
 class TicTacToeCell extends Component {
   click(id) {
@@ -52,7 +51,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   ticTacToeCellClick: id => {
-    emitToRoom('CELL_CLICK', id);
+    dispatch({ type: 'SOCKET', event: 'CELL_CLICK', args: [id] });
   }
 });
 
