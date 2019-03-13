@@ -33,7 +33,6 @@ body {
   display: flex;
   justify-content: center;
   padding: 1rem;
-  flex: 0.8;
   align-items: center;
 
   .board {
@@ -157,6 +156,8 @@ body {
 }
 
 .header {
+  padding-top: 1rem;
+
   .header-top {
     display: flex;
     align-items: flex-end;
@@ -244,5 +245,25 @@ body {
 
   .link {
     color: white;
+  }
+}
+
+.language-select-container {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+
+  .center-container {
+    max-width: $max-board-size;
+    width: 70vmin;
+    display: flex;
+    justify-content: flex-end;
+
+    div {
+    }
   }
 }

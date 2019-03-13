@@ -85,4 +85,19 @@ const connection = (state = new Connection(), action) => {
   }
 };
 
-export const rootReducer = combineReducers({ tictactoe, connection });
+class Lang {
+  constructor() {
+    this.language = 'EN';
+  }
+}
+
+const lang = (state = new Lang(), action) => {
+  switch (action.type) {
+    case 'LANGUAGE_CHANGE':
+      return { ...state, language: action.language };
+    default:
+      return state;
+  }
+};
+
+export const rootReducer = combineReducers({ tictactoe, connection, lang });
