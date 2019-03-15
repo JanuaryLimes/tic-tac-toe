@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import { Select, MenuItem } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 class LanguageSelect extends Component {
   render() {
-    const { language, t } = this.props;
+    const { language } = this.props;
     return (
       <div className="language-select-container">
         <div className="center-container">
           <Select value={language} onChange={e => this.handleChange(e)}>
-            <MenuItem value="EN">EN</MenuItem>
-            <MenuItem value="PL">PL</MenuItem>
+            <MenuItem value="en">EN</MenuItem>
+            <MenuItem value="pl">PL</MenuItem>
           </Select>
         </div>
-        <div>{t('title')}</div>
       </div>
     );
   }
@@ -23,6 +22,7 @@ class LanguageSelect extends Component {
     const newLang = e.target.value;
     if (language !== newLang) {
       changeLanguage(newLang);
+      i18next.changeLanguage(newLang);
     }
   }
 }
@@ -40,4 +40,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withTranslation()(LanguageSelect));
+)(LanguageSelect);

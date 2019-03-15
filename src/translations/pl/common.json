@@ -1,3 +1,17 @@
 {
-  "title": "hej"
+  "Icons made by": "Ikony wykonane przez ",
+  "Roundicons": "Roundicons",
+  "from": " z ",
+  "Flaticon": "Flaticon",
+  "flaticon url": "www.flaticon.com",
+  "is licensed by": " są licencjonowane przez ",
+  "cc3 long": "Creative Commons BY 3.0",
+  "cc3": "CC 3.0 BY",
+  "tie": "Remis!",
+  "connected to room": "połączono do pokoju: {{roomId}}",
+  "room is full": "pokój jest pełny",
+  "houston": "hiuston, mamy problem",
+  "room id": "Pokój",
+  "connect": "Połącz",
+  "Waiting for the second player": "Oczekiwanie na drugiego gracza"
 }

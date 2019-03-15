@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import TicTacToeCell from './TicTacToeCell';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 
 class TicTacToe extends Component {
   render() {
-    const { cells, gameOver, gameOverInfo } = this.props;
+    const { cells, tie, t } = this.props;
 
     return (
       <div className="board-container">
@@ -13,10 +14,10 @@ class TicTacToe extends Component {
           {cells.map(cell => {
             return <TicTacToeCell key={cell.id} cell={cell} id={cell.id} />;
           })}
-          {gameOver && (
+          {tie && (
             <div className="info">
               <div className="info-banner">
-                <span className="info-text">{gameOverInfo}</span>
+                <span className="info-text">{t('tie')}</span>
               </div>
             </div>
           )}
@@ -34,8 +35,7 @@ TicTacToe.propTypes = {
 
 const mapStateToProps = state => ({
   cells: state.tictactoe.cells,
-  gameOver: state.tictactoe.gameOver,
-  gameOverInfo: state.tictactoe.gameOverInfo
+  tie: state.tictactoe.tie
 });
 
-export default connect(mapStateToProps)(TicTacToe);
+export default connect(mapStateToProps)(withTranslation()(TicTacToe));

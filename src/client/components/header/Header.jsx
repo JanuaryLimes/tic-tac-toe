@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import ConnectionStatus from './ConnectionStatus';
 import { connect } from 'react-redux';
 import ScoresAndTurn from './ScoresAndTurn';
+import { withTranslation } from 'react-i18next';
 
 class Header extends Component {
   componentDidMount() {
@@ -21,7 +22,8 @@ class Header extends Component {
       connectToRoom,
       connectedRoom,
       inputRoomChange,
-      playersInRoom
+      playersInRoom,
+      t
     } = this.props;
 
     const showChangeRoom = inputRoom !== connectedRoom;
@@ -31,8 +33,8 @@ class Header extends Component {
         <div className="header-top">
           <TextField
             className="room-input"
-            label="Pokój"
-            style={{ width: '60px' }}
+            label={t('room id')}
+            style={{ width: '65px' }}
             value={inputRoom}
             onChange={inputRoomChange}
             onKeyUp={e => {
@@ -52,14 +54,14 @@ class Header extends Component {
               }}
               onClick={() => connectToRoom()}
             >
-              Połącz
+              {t('connect')}
             </Button>
           )}
           <ConnectionStatus />
         </div>
         {playersInRoom < 2 && (
           <div className="center header-wait-for-second-player">
-            Oczekiwanie na drugiego gracza
+            {t('Waiting for the second player')}
           </div>
         )}
         <ScoresAndTurn />
@@ -102,4 +104,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
+)(withTranslation()(Header));

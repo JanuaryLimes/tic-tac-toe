@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CheckCircle, Warning } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 
 class ConnectionStatus extends Component {
   render() {
@@ -14,15 +15,15 @@ class ConnectionStatus extends Component {
   }
 
   getInfo() {
-    const { connected, connectedRoom, roomIsFull } = this.props;
+    const { connected, connectedRoom, roomIsFull, t } = this.props;
 
     if (connected) {
-      return 'Połączono do pokoju ' + connectedRoom;
+      return t('connected to room', { roomId: connectedRoom });
     } else {
       if (roomIsFull) {
-        return 'Pokój jest pełny';
+        return t('room is full');
       } else {
-        return 'hiuston mamy problem';
+        return t('houston');
       }
     }
   }
@@ -49,4 +50,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ConnectionStatus);
+export default connect(mapStateToProps)(withTranslation()(ConnectionStatus));
