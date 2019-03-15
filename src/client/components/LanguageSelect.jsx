@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Select, MenuItem } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 
 class LanguageSelect extends Component {
   render() {
-    const { language } = this.props;
+    const { language, t } = this.props;
     return (
       <div className="language-select-container">
         <div className="center-container">
@@ -13,6 +14,7 @@ class LanguageSelect extends Component {
             <MenuItem value="PL">PL</MenuItem>
           </Select>
         </div>
+        <div>{t('title')}</div>
       </div>
     );
   }
@@ -38,4 +40,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LanguageSelect);
+)(withTranslation()(LanguageSelect));

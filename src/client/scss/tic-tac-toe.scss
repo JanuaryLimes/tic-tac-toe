@@ -240,7 +240,7 @@ body {
 .footer {
   text-align: center;
   font-size: 0.75rem;
-  padding-top: 5rem;
+  padding-top: 4.5rem;
   padding-bottom: 1rem;
 
   .link {
@@ -262,8 +262,6 @@ body {
     width: 70vmin;
     display: flex;
     justify-content: flex-end;
-
-    div {
-    }
+    padding: 0 1rem;
   }
 }

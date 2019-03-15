@@ -6,6 +6,7 @@ import './client/scss/tic-tac-toe.scss';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import configureStore from './client/redux/configureStore';
 import { getPreloadedState } from './state.utils';
+import { initTranslations } from './translations/translation';
 
 const theme = createMuiTheme({
   palette: {
@@ -13,6 +14,8 @@ const theme = createMuiTheme({
   },
   typography: { useNextVariants: true }
 });
+
+initTranslations();
 
 ReactDOM.render(
   <Provider store={configureStore(getPreloadedState())}>
