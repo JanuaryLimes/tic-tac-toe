@@ -61,7 +61,15 @@ class Header extends Component {
         </div>
         {playersInRoom < 2 && (
           <div className="center header-wait-for-second-player">
-            {t('Waiting for the second player')}
+            <span>{t('Waiting for the second player')}</span>
+            <span>
+              <div className="lds-ellipsis">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+            </span>
           </div>
         )}
         <ScoresAndTurn />
