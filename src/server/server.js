@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var io = require('socket.io')(http, { pingTimeout: 60000 });
 
 app.use((req, res, next) => {
   const environments = ['production'];
