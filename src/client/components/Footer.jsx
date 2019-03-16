@@ -1,36 +1,38 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
+  const { t } = useTranslation();
   return (
     <div className="footer">
       <div>
-        Icons made by{' '}
+        {t('Icons made by')}
         <a
           className="link"
           href="https://www.flaticon.com/authors/roundicons"
-          title="Roundicons"
+          title={t('Roundicons')}
           rel="noopener noreferrer"
         >
-          Roundicons
-        </a>{' '}
-        from{' '}
+          {t('Roundicons')}
+        </a>
+        {t('from')}
         <a
           className="link"
           href="https://www.flaticon.com/"
           rel="noopener noreferrer"
-          title="Flaticon"
+          title={t('Flaticon')}
         >
-          www.flaticon.com
-        </a>{' '}
-        is licensed by{' '}
+          {t('flaticon url')}
+        </a>
+        {t('is licensed by')}
         <a
           className="link"
           href="http://creativecommons.org/licenses/by/3.0/"
-          title="Creative Commons BY 3.0"
+          title={t('cc3 long')}
           target="_blank"
           rel="noopener noreferrer"
         >
-          CC 3.0 BY
+          {t('cc3')}
         </a>
       </div>
     </div>

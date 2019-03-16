@@ -54,7 +54,6 @@ export const checkWinner = afterClickState => {
       result = {
         ...afterClickState,
         gameOver: true,
-        gameOverInfo: 'Wygrały kółka',
         circleResult: afterClickState.circleResult + 1,
         cells: markWinningCells(cells, combination)
       };
@@ -63,7 +62,6 @@ export const checkWinner = afterClickState => {
       result = {
         ...afterClickState,
         gameOver: true,
-        gameOverInfo: 'Wygrały krzyżyki',
         crossResult: afterClickState.crossResult + 1,
         cells: markWinningCells(cells, combination)
       };
@@ -74,7 +72,7 @@ export const checkWinner = afterClickState => {
     result = {
       ...afterClickState,
       gameOver: true,
-      gameOverInfo: 'Remis!'
+      tie: true
     };
   }
 
