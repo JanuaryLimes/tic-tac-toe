@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class ScoresAndTurn extends Component {
@@ -28,6 +29,14 @@ class ScoresAndTurn extends Component {
     }
   }
 }
+
+ScoresAndTurn.propTypes = {
+  circleResult: PropTypes.number,
+  crossResult: PropTypes.number,
+  gameOver: PropTypes.bool,
+  gameStarted: PropTypes.bool,
+  turn: PropTypes.string
+};
 
 const mapStateToProps = state => {
   return {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import ConnectionStatus from './ConnectionStatus';
@@ -77,6 +78,15 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  connectToRoom: PropTypes.func,
+  connectedRoom: PropTypes.string,
+  inputRoom: PropTypes.string,
+  inputRoomChange: PropTypes.func,
+  playersInRoom: PropTypes.number,
+  t: PropTypes.func
+};
 
 const mapStateToProps = state => {
   return {

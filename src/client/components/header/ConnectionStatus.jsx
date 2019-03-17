@@ -39,7 +39,10 @@ class ConnectionStatus extends Component {
 }
 
 ConnectionStatus.propTypes = {
-  tooltipText: PropTypes.string
+  connected: PropTypes.bool,
+  connectedRoom: PropTypes.string,
+  roomIsFull: PropTypes.bool,
+  t: PropTypes.func
 };
 
 const mapStateToProps = state => {
