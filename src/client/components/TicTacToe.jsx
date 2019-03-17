@@ -29,8 +29,8 @@ class TicTacToe extends Component {
 
 TicTacToe.propTypes = {
   cells: PropTypes.array,
-  gameOver: PropTypes.bool,
-  gameOverInfo: PropTypes.string
+  t: PropTypes.func,
+  tie: PropTypes.bool
 };
 
 const mapStateToProps = state => ({

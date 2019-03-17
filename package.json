@@ -9,7 +9,6 @@
     "i18next": "^15.0.7",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
-    "npm-run-all": "^4.1.5",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-i18next": "^10.5.1",
@@ -17,23 +16,20 @@
     "react-scripts": "2.1.5",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "serve": "^10.1.2",
     "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "^7.12.4"
   },
   "scripts": {
     "react-dev": "react-scripts start",
     "server-dev": "nodemon --inspect=9230 src/server/server.js",
-    "start": "run-p start-node",
-    "start-react": "serve -s build",
-    "start-node": "node src/server/server.js",
+    "start": "node src/server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "my-all": "npm run build && npm run start",
-    "heroku-postbuild": "npm run build"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "heroku-postbuild": "npm run build",
+    "lint": "eslint src --ext .js,.jsx"
   },
   "browserslist": [
     ">0.2%",
