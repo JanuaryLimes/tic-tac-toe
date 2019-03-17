@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { devConsole } from '../../utils';
 
 class TicTacToeCell extends Component {
   click(id) {
@@ -14,10 +15,10 @@ class TicTacToeCell extends Component {
     } = this.props;
 
     if (gameStarted && !gameOver && playerSide === turn && !cell.value) {
-      console.log('klik');
+      devConsole('klik');
       ticTacToeCellClick(id);
     } else {
-      console.log('pusty klik');
+      devConsole('pusty klik');
     }
   }
   render() {
@@ -38,8 +39,12 @@ class TicTacToeCell extends Component {
 
 TicTacToeCell.propTypes = {
   cell: PropTypes.object,
-  click: PropTypes.func,
-  id: PropTypes.number
+  gameOver: PropTypes.bool,
+  gameStarted: PropTypes.bool,
+  id: PropTypes.number,
+  playerSide: PropTypes.string,
+  ticTacToeCellClick: PropTypes.func,
+  turn: PropTypes.string
 };
 
 const mapStateToProps = state => ({

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Select, MenuItem } from '@material-ui/core';
 import { connect } from 'react-redux';
 import i18next from 'i18next';
+import PropTypes from 'prop-types';
 
 class LanguageSelect extends Component {
   render() {
@@ -26,6 +27,11 @@ class LanguageSelect extends Component {
     }
   }
 }
+
+LanguageSelect.propTypes = {
+  changeLanguage: PropTypes.func,
+  language: PropTypes.string
+};
 
 const mapStateToProps = state => ({
   language: state.lang.language
