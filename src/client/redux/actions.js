@@ -8,7 +8,7 @@ export const getAfterClickState = (state, action) => {
   }
   const newTurn = state.turn === circle ? cross : circle;
   const newVal = state.turn === circle ? circle : cross;
-  let afterClick = {
+  const afterClick = {
     ...state,
     cells: state.cells.map(cell =>
       cell.id === action.id ? { ...cell, value: newVal, isUsed: true } : cell
@@ -37,17 +37,17 @@ const markWinningCells = (cells, combination) => {
 };
 
 export const checkWinner = afterClickState => {
-  var cells = afterClickState.cells;
+  const cells = afterClickState.cells;
 
-  var ooo = cells
+  const ooo = cells
     .filter(cell => cell.isUsed && cell.value === circle)
     .map(cell => cell.id);
 
-  var xxx = cells
+  const xxx = cells
     .filter(cell => cell.isUsed && cell.value === cross)
     .map(cell => cell.id);
 
-  var result = { ...afterClickState };
+  let result = { ...afterClickState };
 
   winningCombinations.forEach(combination => {
     if (combination.every(index => ooo.indexOf(index) > -1)) {

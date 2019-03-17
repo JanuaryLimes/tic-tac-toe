@@ -35,7 +35,7 @@ const getDefaultId = () => {
 };
 
 const getGameCells = () => {
-  let cells = [];
+  const cells = [];
   for (let index = 1; index <= 9; index++) {
     cells.push(new Cell(index));
   }
