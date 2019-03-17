@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http, { pingTimeout: 60000 });
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http, { pingTimeout: 60000 });
 
 app.use((req, res, next) => {
   const environments = ['production'];
@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, '../../build')));
 
 // An api endpoint that returns a short list of items
 app.get('/api/getList', (req, res) => {
-  var list = ['item1', 'item2', 'item3'];
+  const list = ['item1', 'item2', 'item3'];
   res.json(list);
   console.log('Sent list of items');
 });

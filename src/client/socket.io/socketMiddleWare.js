@@ -5,7 +5,7 @@ export const socketMiddleWare = store => {
   return next => action => {
     if (action.type === 'SOCKET') {
       let room = '';
-      let conn = store.getState().connection;
+      const conn = store.getState().connection;
       if (action.event === 'ROOM_CONNECT') {
         room = conn.inputRoom;
       } else {
