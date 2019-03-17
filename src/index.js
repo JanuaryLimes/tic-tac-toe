@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import './client/scss/tic-tac-toe.scss';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import configureStore from './client/redux/configureStore';
-import { getPreloadedState } from './state.utils';
+import { getPreloadedState } from './utils';
 import './translations/translation';
 
 const theme = createMuiTheme({

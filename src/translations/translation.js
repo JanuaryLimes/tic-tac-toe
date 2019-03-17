@@ -19,7 +19,7 @@ i18next.use(initReactI18next).init({
     escapeValue: false // not needed for react as it escapes by default
   }
 });
-i18next.on('languageChanged', lng => {
+i18next.on('languageChanged', () => {
   document.title = i18next.t('document title');
 });
 

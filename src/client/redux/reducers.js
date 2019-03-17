@@ -60,8 +60,7 @@ const tictactoe = (state = new Game(), action) => {
         crossResult: state.crossResult
       };
     case 'CELL_CLICK':
-      const afterClick = getAfterClickState(state, action);
-      return checkWinner(afterClick);
+      return checkWinner(getAfterClickState(state, action));
     default:
       return state;
   }
