@@ -110,6 +110,11 @@ io.on('connection', function(socket) {
     io.in(room).emit('NEW_GAME'); // tu jest chyba podwójne po wygranej...
   });
 
+  socket.on('NEXT_ROUND', room => {
+    console.log('NEXT_ROUND');
+    io.in(room).emit('NEXT_ROUND');
+  });
+
   socket.on('CELL_CLICK', (room, msg) => {
     console.log(msg);
     io.in(room).emit('CELL_CLICK', msg);

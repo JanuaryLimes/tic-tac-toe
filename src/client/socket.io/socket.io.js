@@ -25,12 +25,16 @@ const createSocket = store => {
       const { gameOver } = getState().tictactoe;
       if (gameOver) {
         setTimeout(() => {
-          dispatch({ type: 'SOCKET', event: 'NEW_GAME' });
+          dispatch({ type: 'SOCKET', event: 'NEXT_ROUND' });
         }, 3000);
       }
     };
 
     store.dispatch(thunkRestartGame());
+  });
+
+  socket.on('NEXT_ROUND', () => {
+    store.dispatch({ type: 'NEXT_ROUND' });
   });
 
   socket.on('NEW_GAME', () => {

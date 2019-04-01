@@ -55,12 +55,20 @@ const tictactoe = (state = new Game(), action) => {
     case 'NEW_GAME':
       return {
         ...new Game(),
+        gameStarted: true
+      };
+    case 'NEXT_ROUND':
+      return {
+        ...new Game(),
         gameStarted: true,
         circleResult: state.circleResult,
         crossResult: state.crossResult
       };
     case 'CELL_CLICK':
       return checkWinner(getAfterClickState(state, action));
+    case 'PLAYER_DISCONNECTED':
+    case 'ROOM_CONNECT_RESULT':
+      return { ...new Game() };
     default:
       return state;
   }
